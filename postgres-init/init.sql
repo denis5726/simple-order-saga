@@ -1,0 +1,3 @@
+CREATE SCHEMA orders;
+CREATE SCHEMA users;
+CREATE SCHEMA delivery;

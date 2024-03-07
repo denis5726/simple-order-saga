@@ -1,0 +1,47 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="denis5726" id="ddl-1">
+        <createTable tableName="account">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" primaryKeyName="account_pkey"/>
+            </column>
+            <column name="version" type="bigint"/>
+            <column name="user" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="decimal">
+                <constraints nullable="false"/>
+            </column>
+            <column name="currency" type="currency">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamptz">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamptz">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addUniqueConstraint tableName="account" columnNames="user,currency" constraintName="account_user_currency_uq"/>
+        <addForeignKeyConstraint baseTableName="account"
+                                 baseColumnNames="user"
+                                 constraintName="account_user_user_fkey"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="denis5726" author="dml-1">
+        <insert tableName="account">
+            <column name="id">15d30e1f-54bd-495b-a878-a60c0f8cd115</column>
+            <column name="version">0</column>
+            <column name="amount">1000.0</column>
+            <column name="currency">RUB</column>
+            <column name="created_at">2023-11-14T17:22:23.131342Z</column>
+            <column name="updated_at">2023-11-14T17:22:23.131342Z</column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

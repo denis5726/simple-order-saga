@@ -1,4 +1,4 @@
-package com.example.simplesaga.common.security.impl;
+package com.example.simplesaga.common.security;
 
 import com.example.simplesaga.common.security.exception.JwtAuthenticationException;
 import com.example.simplesaga.common.security.model.JwtAuthentication;
@@ -6,16 +6,15 @@ import com.example.simplesaga.common.security.model.Permission;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -26,8 +25,8 @@ public class JwtTokenProvider {
     @Value("${simplesaga.jwt.secret-key}")
     private final String secretKey;
     private static final String ACCESS_TOKEN_HEADER = "Authorization";
-    private static final long EXPIRATION_IN_SECONDS = 86_400L;
-    private static final String PERMISSIONS_CLAIM_KEY = "permissions";
+    public static final String PERMISSIONS_CLAIM_KEY = "permissions";
+    @Getter
     private String encodedSecretKey;
 
     @PostConstruct
@@ -41,17 +40,6 @@ public class JwtTokenProvider {
         } catch (JwtException | IllegalArgumentException e) {
             throw new JwtAuthenticationException("Invalid token");
         }
-    }
-
-    public String generateToken(JwtAuthentication jwtAuthentication) {
-        final var now = new Date();
-        return Jwts.builder()
-                .setSubject(jwtAuthentication.getId().toString())
-                .setClaims(Collections.singletonMap(PERMISSIONS_CLAIM_KEY, jwtAuthentication.getPermissions()))
-                .setIssuedAt(now)
-                .setExpiration(new Date(now.getTime() + EXPIRATION_IN_SECONDS * 1000L))
-                .signWith(SignatureAlgorithm.HS256, encodedSecretKey)
-                .compact();
     }
 
     public String resolveToken(HttpServletRequest request) {

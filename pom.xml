@@ -121,6 +121,12 @@
                     </annotationProcessorPaths>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
+                    <compilerArgs>
+                        <arg>-Amapstruct.defaultComponentModel=spring</arg>
+                        <arg>-Amapstruct.defaultInjectionStrategy=constructor</arg>
+                        <arg>-Amapstruct.unmappedTargetPolicy=ignore</arg>
+                        <arg>-Amapstruct.disableBuilders=true</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
             <plugin>

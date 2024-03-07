@@ -1,7 +1,7 @@
 package com.example.simplesaga.common.security.filter;
 
 import com.example.simplesaga.common.security.exception.JwtAuthenticationException;
-import com.example.simplesaga.common.security.impl.JwtTokenProvider;
+import com.example.simplesaga.common.security.JwtTokenProvider;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

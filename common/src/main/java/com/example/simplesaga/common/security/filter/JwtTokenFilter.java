@@ -1,15 +1,15 @@
 package com.example.simplesaga.common.security.filter;
 
-import com.example.flights.common.exception.common.JwtAuthenticationException;
-import com.example.flights.common.security.JwtTokenProvider;
+import com.example.simplesaga.common.security.exception.JwtAuthenticationException;
+import com.example.simplesaga.common.security.impl.JwtTokenProvider;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.lang.NonNull;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -21,38 +21,29 @@ import java.util.Objects;
 @Slf4j
 @RequiredArgsConstructor
 public class JwtTokenFilter extends OncePerRequestFilter {
-
     private final JwtTokenProvider jwtTokenProvider;
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request,
                                     @NonNull HttpServletResponse response,
                                     @NonNull FilterChain filterChain) throws ServletException, IOException {
-        log.trace("Process request {} in jwt token filter", request.getRequestId());
-
-        String token = jwtTokenProvider.resolveToken(request);
-
-        log.trace("Resolved token - {}", token);
-
+        final var token = jwtTokenProvider.resolveToken(request);
         try {
-            if (Objects.nonNull(token) && !token.isEmpty() && jwtTokenProvider.validateToken(token)) {
-                log.trace("Token validated");
-
-                Authentication authentication = jwtTokenProvider.getAuthentication(token);
-
+            if (StringUtils.isNotBlank(token) && jwtTokenProvider.isValidToken(token)) {
+                final var authentication = jwtTokenProvider.getAuthentication(token);
                 if (Objects.nonNull(authentication)) {
-                    log.trace("Set authentication {} in context", authentication);
-
+                    log.info("Setting authentication: {} to request (id={})", authentication, request.getRequestId());
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
             }
         } catch (JwtAuthenticationException e) {
-            log.debug("Token validation failed, exception has been thrown - {}, clear context", e.getMessage());
-
+            log.error(
+                    "Exception during JWT token validation: {} (requestId={})",
+                    e.getMessage(),
+                    request.getRequestId()
+            );
             SecurityContextHolder.clearContext();
         }
-
-        log.trace("Jwt token filter passed for request {}", request.getRequestId());
 
         filterChain.doFilter(request, response);
     }

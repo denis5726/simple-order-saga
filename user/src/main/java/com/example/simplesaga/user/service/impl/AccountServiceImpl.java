@@ -75,7 +75,7 @@ public class AccountServiceImpl implements AccountService {
                         Account.builder()
                                 .user(userRepository.findById(jwtAuthentication.getId()).orElseThrow())
                                 .amount(BigDecimal.ZERO)
-                                .currency(request.currency().getCurrencyCode())
+                                .currency(request.currency())
                                 .build()
                 )
         );

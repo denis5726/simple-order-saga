@@ -18,6 +18,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
+import java.util.Currency;
 import java.util.UUID;
 
 @Entity
@@ -37,7 +38,7 @@ public class Account {
     @JoinColumn(name = "user")
     private User user;
     private BigDecimal amount;
-    private String currency;
+    private Currency currency;
     @CreatedDate
     private ZonedDateTime createdAt;
     @LastModifiedDate

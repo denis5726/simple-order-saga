@@ -4,7 +4,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <changeSet author="denis5726" id="ddl-1">
-        <createTable tableName="account">
+        <createTable tableName="account" schemaName="user">
             <column name="id" type="uuid">
                 <constraints primaryKey="true" primaryKeyName="account_pkey"/>
             </column>
@@ -35,7 +35,7 @@
     </changeSet>
 
     <changeSet id="denis5726" author="dml-1">
-        <insert tableName="account">
+        <insert tableName="account" schemaName="user">
             <column name="id">15d30e1f-54bd-495b-a878-a60c0f8cd115</column>
             <column name="version">0</column>
             <column name="amount">1000.0</column>

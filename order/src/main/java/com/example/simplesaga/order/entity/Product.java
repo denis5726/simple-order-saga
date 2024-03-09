@@ -21,6 +21,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
+import java.util.Currency;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -39,7 +40,7 @@ public class Product {
     private String title;
     private String description;
     private BigDecimal price;
-    private String currency;
+    private Currency currency;
     @ManyToMany
     @JoinTable(name = "product_category",
             joinColumns = @JoinColumn(name = "product"),

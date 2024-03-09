@@ -33,6 +33,7 @@
         <junit.jupiter.version>5.9.2</junit.jupiter.version>
         <junit.platform.version>1.9.2</junit.platform.version>
         <liquibase-maven-plugin.version>3.5.5</liquibase-maven-plugin.version>
+        <hibernate.metamodel.version>6.1.7.Final</hibernate.metamodel.version>
     </properties>
 
     <dependencyManagement>
@@ -118,6 +119,11 @@
                             <artifactId>lombok-mapstruct-binding</artifactId>
                             <version>${lombok-mapstruct-binding.version}</version>
                         </dependency>
+                        <path>
+                            <groupId>org.hibernate.orm</groupId>
+                            <artifactId>hibernate-jpamodelgen</artifactId>
+                            <version>${hibernate.metamodel.version}</version>
+                        </path>
                     </annotationProcessorPaths>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>

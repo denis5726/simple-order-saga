@@ -12,14 +12,10 @@ Vcommon/src/main/java/com/example/simplesaga/common/security/filter/JwtTokenFilt
 Xcommon/src/main/java/com/example/simplesaga/common/security/model/JwtAuthentication.java,2\2\22dbc8f3765bfb7b2f557d3a9dc947f15c8d4685
 
 Qcommon/src/main/java/com/example/simplesaga/common/security/model/Permission.java,a\5\a52863f838261c0dc7e75ef7d3c95d9d82c597c4
->
-common/pom.xml,4\8\488bdbea7e8b73c44bd2a54e63f6012f10969196
 p
 @user/src/main/java/com/example/simplesaga/user/dto/TokenDto.java,d\4\d404ebc4d1a1f6aa64bde4c39103275a6288eaf0
 w
 Guser/src/main/java/com/example/simplesaga/user/service/AuthService.java,9\3\93f991e578f411b67fcc196ac2d9fa566dab8cde
-~
-Ncommon/src/main/java/com/example/simplesaga/common/exception/ApiException.java,b\2\b2de1e2b2803766d3a294483c9eee43ef59dd750
 †
 Vcommon/src/main/java/com/example/simplesaga/common/aop/ControllerValidationAspect.java,c\1\c141b708132d72f4401c0480bf44914d7fa0ca2e
 |
@@ -44,8 +40,6 @@ Xcommon/src/main/java/com/example/simplesaga/common/exception/ValidationApiExcep
 Qcommon/src/main/java/com/example/simplesaga/common/security/JwtTokenProvider.java,a\4\a48b179becd712747ab5e2ca8109ac1039734049
 x
 Huser/src/main/java/com/example/simplesaga/user/service/TokenBuilder.java,3\8\383523c1def0591e222de9e3a9fd8731531fdf12
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 o
 ?user/src/main/java/com/example/simplesaga/user/dto/UserDto.java,c\d\cde1bd3945ef73eb8ec582975f440967e4391967
 u
@@ -102,7 +96,9 @@ r
 Buser/src/main/java/com/example/simplesaga/user/dto/AccountDto.java,b\a\ba3979b02d2eb09a9aeddbf363e33b9bcba96300
 o
 ?user/src/main/java/com/example/simplesaga/user/entity/User.java,4\1\41902020d98a01c0b549528d7c7e3d5932f8174b
-r
-Buser/src/main/java/com/example/simplesaga/user/entity/Account.java,2\3\23cf4a355a5d962dd3efe1d8774bf26253d96846
 ƒ
 Suser/src/main/java/com/example/simplesaga/user/service/impl/AccountServiceImpl.java,c\9\c9af38bd0c602dfb8da53c4b6b3dfb5028d3b532
+r
+Border/src/main/java/com/example/simplesaga/order/entity/Order.java,0\c\0c25903eb8e886e60888436d98fd13338a8f730f
+}
+Morder/src/main/java/com/example/simplesaga/order/service/CategoryService.java,1\4\1440d5a72045d63cba7920249c88760a0b324c05

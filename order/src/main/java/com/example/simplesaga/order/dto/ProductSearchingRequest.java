@@ -2,7 +2,7 @@ package com.example.simplesaga.order.dto;
 
 import java.math.BigDecimal;
 import java.util.Currency;
-import java.util.Map;
+import java.util.List;
 import java.util.UUID;
 
 public record ProductSearchingRequest(
@@ -12,9 +12,15 @@ public record ProductSearchingRequest(
         BigDecimal priceLowerBound,
         BigDecimal priceUpperBound,
         Currency currency,
-        Map<Field, Direction> sort,
+        List<SortOrder> sort,
         Integer page
 ) {
+    public record SortOrder(
+            Field field, Direction direction
+    ) {
+
+    }
+
     public enum Field {
         TITLE, PRICE
     }

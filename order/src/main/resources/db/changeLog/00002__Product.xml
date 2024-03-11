@@ -1,0 +1,61 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="denis5726" id="ddl-1">
+        <createTable tableName="product">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" primaryKeyName="product_pkey"/>
+            </column>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="text"/>
+            <column name="price" type="decimal">
+                <constraints nullable="false"/>
+            </column>
+            <column name="currency" type="currency">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creator" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_editor" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamptz">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamptz">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="product_category">
+            <column name="product" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey tableName="product_category" columnNames="product,category"
+                       constraintName="product_category_pkey"/>
+
+        <addForeignKeyConstraint baseTableName="product_category" baseColumnNames="category"
+                                 constraintName="product_category_category_fk"
+                                 referencedTableName="category"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="product_category" baseColumnNames="product"
+                                 constraintName="product_category_product_fk"
+                                 referencedTableName="product"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="denis5726" author="dml-1">
+
+    </changeSet>
+</databaseChangeLog>

@@ -3,6 +3,8 @@
                    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
-    <include file="00001__User.xml" relativeToChangelogFile="true"/>
-    <include file="00002__Account.xml" relativeToChangelogFile="true"/>
+    <include file="00001__Category.xml" relativeToChangelogFile="true"/>
+    <include file="00002__Product.xml" relativeToChangelogFile="true"/>
+    <include file="00003__Order.xml" relativeToChangelogFile="true"/>
+    <include file="00004__OrderEntry.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

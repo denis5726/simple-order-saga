@@ -1,0 +1,41 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="denis5726" id="ddl-1">
+        <createTable tableName="order_entry">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" primaryKeyName="order_entry_pkey"/>
+            </column>
+            <column name="order" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamptz">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addUniqueConstraint tableName="order_entry" columnNames="order,product"/>
+
+        <addForeignKeyConstraint baseTableName="order_entry" baseColumnNames="order"
+                                 constraintName="order_entry_order_fk"
+                                 referencedTableName="order"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="order_entry" baseColumnNames="product"
+                                 constraintName="order_entry_product_fk"
+                                 referencedTableName="product"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="denis5726" author="dml-1">
+
+    </changeSet>
+</databaseChangeLog>

@@ -9,7 +9,9 @@ import java.util.UUID;
 
 public record OrderCreatingRequest(
         @NotEmpty
-        List<Entry> entries
+        List<Entry> entries,
+        @NotNull
+        UUID warehouseId
 ) {
     public record Entry(
             @NotNull

@@ -100,5 +100,3 @@ o
 Suser/src/main/java/com/example/simplesaga/user/service/impl/AccountServiceImpl.java,c\9\c9af38bd0c602dfb8da53c4b6b3dfb5028d3b532
 r
 Border/src/main/java/com/example/simplesaga/order/entity/Order.java,0\c\0c25903eb8e886e60888436d98fd13338a8f730f
-}
-Morder/src/main/java/com/example/simplesaga/order/service/CategoryService.java,1\4\1440d5a72045d63cba7920249c88760a0b324c05
